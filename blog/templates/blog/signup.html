@@ -1,0 +1,50 @@
+{% extends "blog/base.html" %}
+
+{% load static %}
+
+{% block content %}
+  <body>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+        <div class="card card-signin my-5">
+          <div class="card-body">
+            <h5 class="card-title text-center">Sign Up</h5>
+            <form class="form-signin" method="POST" id="signin_form" name="signin_form">
+            {% csrf_token %}
+            {% if error %}
+                    <div class='alert alert-danger'>{{error}}</div>
+            {% endif %}
+
+            {% if success %}
+                    <div class='alert alert-success'>{{success}}</div>
+                    {% endif %}
+
+              <div class="form-label-group">
+                <input type="text" name="inputUser" class="form-control" placeholder="Email address" required autofocus>
+                <label for="inputEmail">user</label>
+              </div>
+
+              <div class="form-label-group">
+                <input type="email" name="inputEmail" class="form-control" placeholder="Password" required>
+                <label for="inputPassword">Email</label>
+              </div>
+
+              <div class="form-label-group">
+                <input type="password" name="inputPassword1" class="form-control" placeholder="Password" required>
+                <label for="inputPassword">Password</label>
+              </div>
+
+              <div class="form-label-group">
+                <input type="password" name="inputPassword2" class="form-control" placeholder="Password" required>
+                <label for="inputPassword">Confirm Password</label>
+              </div>
+              <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Sign Up</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+{% endblock content %}

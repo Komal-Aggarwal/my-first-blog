@@ -1,13 +1,64 @@
 {% extends 'blog/base.html' %}
-
+{% load static %}
 {% block content %}
-    <div class="post">
-        {% if post.published_date %}
-            <div class="date">
-                {{ post.published_date }}
+<center>
+<div class="parallax">
+        <div class="parallax-image"  >
+          {% if post.cover %}
+            <img src="{{post.cover.url}}" >
+          {% else %}
+            <img src="/static/images/default_post.jpg" alt="...">
+          {% endif %} 
+        </div>
+</div>
+
+        <div class="container">
+          <div class="row">
+            <div class="col-md-8">
+              <h1 class="title title-blog">{{post.title}}</h1
+              <p>
+                {% autoescape off %}
+              {{post.text}}
+              {%endautoescape%}
+            </p>
             </div>
-        {% endif %}
-        <h2>{{ post.title }}</h2>
-        <p>{{ post.text|linebreaksbr }}</p>
-    </div>
-{% endblock %}
+            <div class="col-md-3 col-md-offset-1">
+              <br/>
+                  <div class="media media-author">
+                      <div class="media-body">
+                        <h6 class="media-heading">Posted By: {{post.author}}</h6>
+                        <p class="text-muted">Posted On:<br/>{{post.published_date}}</p>
+                      </div>
+                  </div>
+                </div>
+
+          </div>
+          
+            <div id="disqus_thread">
+                
+            </div>
+        </center>
+{% endblock%}
+
+{% block script %}
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://askaquestion-3.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+{% endblock %}                    

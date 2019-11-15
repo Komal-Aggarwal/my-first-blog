@@ -1,0 +1,73 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+<div class="container">
+
+	<!-- <h1>Edit Post  -->
+		{%if message %}
+	    	<span class="label label-success">{{message}} </span>
+
+	    	<span class="label label-info label-fill" style="cursor: pointer;" onclick="window.location.href='/blog/{{post.pk}}';">Let's see</span>
+		{%endif %}
+	</h1>
+		<div class="row">
+		<form method="POST" enctype="multipart/form-data">
+			{%csrf_token%}
+
+				<div class="form-group">
+						Title:
+        				<input type="text" name="title" value="{{post.title}}" placeholder="Title" class="form-control" required >
+    			</div>			
+
+				<div class="form-group">
+						Cover Image:
+        				<input type="file" name="coveimage" value="" placeholder="Title" class="form-control" />
+    			</div>
+
+				<div class="form-group">
+						Content:
+        				<textarea rows="12" cols="30" class="form-control"  name="text" >
+        					{{post.text}}
+        				</textarea>
+    			</div>
+
+				<div class="form-group">
+						Publish on:
+						<input type='text' value="{{post.published_date}}" required class="form-control" placeholder="Publish on:" name="Publishdate" id='datetimepicker4' />
+				</div>
+
+				<div class="form-group">
+						<input type='submit' class="btn btn-primary form-control" value="Save" />
+				</div>
+		</form>
+		</div>
+	</div>
+
+{% endblock content %}
+
+
+{% block script %}
+		<script src="https://cloud.tinymce.com/5/tinymce.min.js?apiKey=w5belymg1p4t4lqa1mb0wiksy5cu9cliwrk1gukmznhjqjw4"></script>
+        <script type="text/javascript">
+        	var $=jQuery;
+
+				tinymce.init({
+				  selector: 'textarea',
+				  height: 500,
+				  menubar: false,
+				  plugins: [
+				    'advlist autolink lists link image charmap print preview anchor textcolor',
+				    'searchreplace visualblocks code fullscreen',
+				    'insertdatetime media table paste code help wordcount'
+				  ],
+				  toolbar: 'undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help',
+				  content_css: [
+				    '//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',
+				    '//www.tiny.cloud/css/codepen.min.css'
+				  ]
+				});
+
+	        	console.log("asd")
+             $('#datetimepicker4').datetimepicker();
+        </script>
+{% endblock %}
