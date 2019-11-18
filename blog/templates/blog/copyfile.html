@@ -1,0 +1,27 @@
+<div class="card mb-3">
+  {% if post.cover %}
+                  <img src="{{post.cover.url}}" alt="..."/>
+                {% else %}
+                  <img src="/static/images/default_post.jpg" alt="..."/>
+                {% endif %}
+  <div class="card-body">
+    <h5 class="card-title">
+                 <a href="/blog/{{post.id}}">
+                     {{post.title}}
+                 </a>
+                 <a href="/blog/{{post.pk}}">
+                     <p class="description">
+                        {{post.description}}
+                     </p>
+                 </a></h5>
+    <p class="card-text"><small class="text-muted">
+     <div class="footer">
+                     <div class="author">
+                         <a class="card-link" href="#">
+                              <span> {{post.author}}</span>
+                         </a>
+                     </div>
+                 </div>
+    </small></p>
+  </div>
+  </div>
