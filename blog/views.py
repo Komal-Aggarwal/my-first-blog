@@ -8,6 +8,8 @@ from django.contrib import auth
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+
+
 def render_base(request):
     return render(request, 'blog/base.html', {})
 
@@ -46,6 +48,7 @@ def post_edit(request, pk):
            post.published_date = timezone.now()
            post.save()
            dictV['message'] = "Blog Post Updated !!"
+           return redirect('post_detail', pk=post.pk)
     else:
         return HttpResponseRedirect('/')
     dictV['post'] = post
@@ -114,3 +117,6 @@ def post_delete(request, pk):
     else:
         return HttpResponseRedirect('/')   
     return render(request, 'blog/post_delete.html', dictV)
+
+
+    
