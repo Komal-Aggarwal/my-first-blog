@@ -1,6 +1,7 @@
 {% load static %}
 <html>
     <head>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Ask A Question</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
@@ -11,8 +12,8 @@
     </head>
     <body>
 <div class="page page-header">
-  <nav class="navbar sticky-top fixed-top navbar-expand-lg">
-  <a class="navbar-brand top-menu" href="#">ASK A QUESTION</a>
+  <nav class="navbar  navbar-fixed-top navbar-expand-lg justify-content-between">
+  <a class="navbar-brand top-menu" href="/">ASK A QUESTION</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -37,11 +38,7 @@
   </div>
   </nav>
 </div><br> <br>
-        <!-- <div class="page-header">
-            <a href="{% url 'post_new' %}" class="top-menu">Add</a>
-            <h1><a href="/">Ask A Question </a></h1>
-            <a href="/login">login</a>
-        </div> -->
+        
         {% block content %}
         {% endblock %}
     </body>
