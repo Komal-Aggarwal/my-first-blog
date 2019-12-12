@@ -1,24 +1,22 @@
 {% extends 'blog/base.html' %}
 {% load static %}
 {% block content %}
-<center>
-<div class="parallax">
-        <div class="parallax-image"  >
-          {% if post.cover %}
-            <img src="{{post.cover.url}}" >
-          {% else %}
-            <img src="/static/images/default_post.jpg" alt="...">
-          {% endif %} 
-        </div>
-</div>
+<br>
+<br>
+<br>
 
+<div class="">
+          {% if post.cover %}
+            <img class="img-fluid" style="width: 100%;" src="{{post.cover.url}}" >  
+          {% endif %} 
+</div>
         <div class="container">
           <div class="row">
             <div class="col-md-8">
               <h1 class="title title-blog">{{post.title}}</h1
               <p>
-                {% autoescape off %}
-              {{post.text}}
+              {% autoescape off %}
+                 {{post.text}}
               {%endautoescape%}
             </p>
             </div>
@@ -37,7 +35,6 @@
             <div id="disqus_thread">
                 
             </div>
-        </center>
 {% endblock%}
 
 {% block script %}

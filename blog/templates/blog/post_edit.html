@@ -1,6 +1,11 @@
 {% extends 'blog/base.html' %}
 
 {% block content %}
+<br>
+<br>
+<br>
+<br>
+
 <div class="container">
 
 	<!-- <h1>Edit Post  -->
@@ -26,16 +31,12 @@
 
 				<div class="form-group">
 						Content:
-        				<textarea rows="12" cols="30" class="form-control"  name="text" >
+        				<textarea rows="12" cols="70" class="form-control"  name="text" >
         					{{post.text}}
         				</textarea>
     			</div>
 
-				<div class="form-group">
-						Publish on:
-						<input type='text' value="{{post.published_date}}"  class="form-control" placeholder="Publish on:" name="Publishdate" id='datetimepicker4' />
-				</div>
-
+	
 				<div class="form-group">
 						<input type='submit' class="btn btn-primary form-control" value="Save" />
 				</div>

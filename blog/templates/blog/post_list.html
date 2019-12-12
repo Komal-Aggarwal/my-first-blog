@@ -1,102 +1,45 @@
 {% extends 'blog/base.html' %}
 {% load static %}
-{% block content %}4
+{% block content %}
+<br>
+<br>
+<br>
+<br>
 
 <div class="container">
-{% for post in posts%}
+{% for post in posts reversed%}
 
-<div class="card mb-3 text-center">
+<div class="card mb-3 text-center shadow">
   {% if post.cover %}
-        <img class="card-img-top" src="{{post.cover.url}}" alt="..."/>
-  {% else %}
-        <img class="card-img-top" src="/static/images/default_post.jpg" alt="..."/>
+        <img class="card-img-top" src="{{post.cover.url}}" alt="...">
    {% endif %}
   <div class="card-body">
-    <h5 class="card-title">{{post.title}}</h5>
+    <h3 class="card-title">{{post.title}}</h3>
     <p class="card-text">{{post.text}}</p>
     <p class="card-text"><small class="text-muted">POSTED BY:{{post.author}}</small></p>
     <p class="card-text"><small class="text-muted">POSTED ON:{{post.published_date}}</small></p>
+                <div class="">
+                     <button type="button" class="btn btn-warning"
+                     onclick="window.location.href='/blog/{{post.pk}}';"
+                     >
+                         <i class="fa fa-image"></i> Preview
+                     </button>
+                     {% if request.user.is_authenticated and post.author == request.user %}
+                     <button  class="btn btn-warning" onclick="window.location.href='/manage/edit/{{post.pk}}';">
+                          <i class="fa fa-edit"></i> Edit
+                     </button>
+
+                     <button type="button" class="btn btn-warning" onclick="window.location.href='/manage/delete/{{post.pk}}';">
+                         <i class="fa fa-trash"></i> Delete
+                     </button>
+                     {%endif%}
+                 </div>
   </div>
 
 </div>
 
 
     {% endfor %}
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="container" style=" margin-top:10px;">
-  {% for post in posts reversed %}
-   <div class="row">
-      <div class="card mb-3 card-signin text-center" style="margin-bottom:24px;">
-             <div class="image-fluid">
-                {% if post.cover %}
-                  <img src="{{post.cover.url}}" alt="..."/>
-                {% else %}
-                  <img src="/static/images/default_post.jpg" alt="..."/>
-                {% endif %}<br></div>
-                <div class="content">
-                 <a href="/blog/{{post.id}}">
-                     <h3 class="title">{{post.title}}</h3>
-                 </a>
-                 <!-- <a href="/blog/{{post.pk}}">
-                     <p class="description">
-                        {{post.text}}
-                     </p>
-                 </a> -->
-                   <div class="footer">
-                     <div class="author">
-                         <a class="card-link" href="#">
-                              <h6><span> {{post.author}}</span>
-                              <div>{{post.published_date}}</div></h6>
-                         </a>
-                     </div>
-                 </div> 
-             </div>
-                 <div class="filter filter-white">
-                     <button type="button" class="btn btn-default btn-simple"
-                     onclick="window.location.href='/blog/{{post.pk}}';"
-                     >
-                         <i class="fa fa-image"></i> Preview
-                     </button>&nbsp
-                     {% if request.user.is_authenticated and post.author == request.user %}
-                        <button type="button" class="btn btn-default btn-simple"
-                     onclick="window.location.href='/manage/edit/{{post.pk}}';"
-                     >
-                         <i class="fa fa-edit"></i> Edit
-                     </button>&nbsp
-
-                     <button type="button" class="btn btn-default btn-simple"
-                     onclick="window.location.href='/manage/delete/{{post.pk}}';"
-                     >
-                         <i class="fa fa-trash"></i> Delete
-                     </button>
-                     {%endif%}
-                 </div>
-             </div>
-             
-         </div>
-  {% endfor %}
-
 </div>
 
 {% endblock content %}
